@@ -1,7 +1,14 @@
 #ifndef STHREAD_H
 #define STHREAD_H
 
-typedef void* HANDLE;
+
+#ifdef _WIN32
+    #include <processthreadsapi.h>
+    #include <synchapi.h>
+    #include <handleapi.h>
+#else
+    #include <pthread.h>
+#endif
 
 typedef struct sthread_t {
 

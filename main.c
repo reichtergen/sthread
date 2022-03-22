@@ -4,7 +4,6 @@
     #include <synchapi.h> // for Sleep()
 #else
     #include <unistd.h>
-    #define Sleep() sleep()
 #endif
 
 
@@ -15,8 +14,9 @@ void func1(void *args) {
 
     for (size_t i = 0; i < 10; i++)
     {
-        printf("%s\n", args);
-        Sleep(1000);
+        printf("%s\n", (char*)args);
+        //Sleep(1000); /*for Win32*/
+        sleep(2);
     }
     
 }
@@ -25,8 +25,9 @@ void func2(void *args) {
 
     for (size_t i = 0; i < 10; i++)
     {
-        printf("%s\n", args);
-        Sleep(2000);
+        printf("%s\n", (char*)args);
+        //Sleep(2000); /*for Win32*/
+        sleep(2);
     }
     
 }
