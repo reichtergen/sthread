@@ -8,20 +8,11 @@
     #include <pthread.h>
 #endif
 
-typedef struct sthread_t {
-
-    #ifdef _WIN32
-        HANDLE thread;
-    #else
-        pthread_t thread;
-    #endif
-} sthread_t;
-
 
 void create_thread(sthread_t * th, void (*thread_function)(void*), void * args)  {
 
     #ifdef _WIN32
-        th->thread = CreateThread(NULL, 0, thread_function, args, 0, NULL);
+        th->thread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)thread_function, args, 0, NULL);
     #else
         pthread_create( th->thread, NULL, thread_function, args);
     #endif   
